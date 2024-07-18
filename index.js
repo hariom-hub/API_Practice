@@ -17,7 +17,7 @@
 // let stringJson = JSON.stringify(object);
 // console.log(stringJson);
 
-const url = "https://catfact.ninja/facat";
+
 
 
 // fetch(url).then((response) => {
@@ -47,37 +47,68 @@ const url = "https://catfact.ninja/facat";
 //     console.log("data2 = ",data2);
 // })
 
-async function getJokes() {
+// async function getJokes() {
+
+//     try {
+//         let res = await fetch(url);
+//         let data = res.json();
+//         data.then((d) => {
+
+//             console.log(d);
+//         }).catch((e) => {
+//             console.log(e);
+//         })
+
+//         let res2 = await fetch(url);
+//         let data2 = res2.json();
+//         data2.then((d2) => {
+//             console.log(d2);
+//         }).catch((e2) => {
+//             console.log(e2);
+//         })
+
+//         let res3 = await fetch(url);
+//         let data3 = res3.json();
+//         data3.then((d3) => {
+//             console.log(d3);
+//         }).catch((e3) => {
+//             console.log(e3);
+//         })
+//         // console.log(data2);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+
+
+
+// const axios = require("axios");
+
+let btn = document.querySelector("button");
+let line = document.querySelector("p");
+
+btn.addEventListener("click",async ()=>{
+
+    let fact = await getFact();
+    line.innerHTML = fact;
+})
+
+
+const url = "https://catfact.ninja/fact";
+
+
+async function getFact() {
 
     try {
-        let res = await fetch(url);
-        let data = res.json();
-        data.then((d) => {
+        let res = await axios.get(url);
+        console.log(res.data.fact);
+        return res.data.fact;
+        
 
-            console.log(d);
-        }).catch((e) => {
-            console.log(e);
-        })
-
-        let res2 = await fetch(url);
-        let data2 = res2.json();
-        data2.then((d2) => {
-            console.log(d2);
-        }).catch((e2) => {
-            console.log(e2);
-        })
-
-        let res3 = await fetch(url);
-        let data3 = res3.json();
-        data3.then((d3) => {
-            console.log(d3);
-        }).catch((e3) => {
-            console.log(e3);
-        })
-        // console.log(data2);
-    } catch (error) {
+    } catch(error){
         console.log(error);
+        return error;
+        
     }
 }
-
-getJokes();
